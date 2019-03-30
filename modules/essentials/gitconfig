@@ -1,0 +1,11 @@
+[user]
+	name = MarcelHB
+	email = redacted@example.com
+[core]
+	editor = nvim
+[merge]
+	tool = vimdiff
+[gpg]
+	program = gpg2
+[alias]
+	pushf = push --force-with-lease

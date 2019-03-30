@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ln -s "${PWD}/vim_plugins" ~/.config/nvim/vundle_plugins/java_plugins.vim
+nvim +PluginInstall +qall

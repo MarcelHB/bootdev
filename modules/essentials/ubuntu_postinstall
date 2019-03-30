@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# nvim
+mkdir -p ~/.config/nvim/bundle
+mkdir -p ~/.config/nvim/vundle_plugins
+mkdir -p ~/.config/nvim/swaps
+mkdir -p ~/.config/nvim/backups
+
+if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]
+then
+  git clone https://github.com/VundleVim/Vundle.vim ~/.config/nvim/bundle/Vundle.vim
+fi
+
+cp modules/essentials/nvim.rc ~/.config/nvim/init.vim
+nvim +PluginInstall +qall
+
+# tmux
+cp modules/essentials/tmux.conf ~/.tmux.conf
+
+# git
+cp modules/essentials/gitconfig ~/.gitconfig
+cp modules/essentials/gitignore ~/.gitignore
+git config --global core.excludesfile ~/.gitignore
+
+# zsh
+mkdir -p ~/.oh-my-zsh-plugins
+if ! [ -d ~/.oh-my-zsh ]
+then
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  sed -i 's/^plugins.*$/plugins=(`ls ~\/.oh-my-zsh-plugins`)/' ~/.zshrc
+
+	# ag
+	echo "alias ag='ag --path-to-ignore ~/.ignore'" >> ~/.zshrc
+fi
+
+# ctags
+cp modules/essentials/ctags ~/.ctags
+
+# ag
+cp modules/essentials/ignore ~/.ignore
+
+# ssh
+mkdir -p ~/.ssh
+cp modules/essentials/ssh-config ~/.ssh/config
+chmod 0700 ~/.ssh
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cp modules/xfwm4/xfce4-term.rc ~/.config/xfce4/terminal/terminalrc
+cp modules/xfwm4/xfconf-thunar.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+cp modules/xfwm4/xfconf-xfwm4.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
