@@ -6,8 +6,7 @@ mkdir -p ~/.config/nvim/vundle_plugins
 mkdir -p ~/.config/nvim/swaps
 mkdir -p ~/.config/nvim/backups
 
-if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]
-then
+if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim ~/.config/nvim/bundle/Vundle.vim
 fi
 
@@ -24,13 +23,28 @@ git config --global core.excludesfile ~/.gitignore
 
 # zsh
 mkdir -p ~/.oh-my-zsh-plugins
-if ! [ -d ~/.oh-my-zsh ]
-then
-  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+ZSH=~/.oh-my-zsh
+if ! [ -d $ZSH ]; then
+  # short version of the omz setup, but skips switching to zsh at the end
+  # so that the other stuff can continue
+  git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $ZSH
+
+  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
+    mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
+  fi
+
+  cp "$ZSH"/templates/zshrc.zsh-template ~/.zshrc
+  sed -i "/^export ZSH=/ c\\
+  export ZSH=\"$ZSH\"
+  " ~/.zshrc
+
   sed -i 's/^plugins.*$/plugins=(`ls ~\/.oh-my-zsh-plugins`)/' ~/.zshrc
 
-	# ag
-	echo "alias ag='ag --path-to-ignore ~/.ignore'" >> ~/.zshrc
+  # ag
+  echo "alias ag='ag --path-to-ignore ~/.ignore'" >> ~/.zshrc
+
+  chsh -s $(grep /zsh$ /etc/shells | tail -1)
 fi
 
 # ctags
