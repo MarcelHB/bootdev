@@ -1,4 +1,5 @@
 curl
+exfat-utils
 exuberant-ctags
 gnupg2
 htop
