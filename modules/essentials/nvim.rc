@@ -71,6 +71,7 @@ map <leader>e :edit %%
 map <leader>v :view %%
 map <leader>f :CtrlP<cr>
 map <leader>F :CtrlP %%<cr>
+map <leader>N :NERDTreeToggle<cr>
 
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_use_caching=0
