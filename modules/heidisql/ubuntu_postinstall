@@ -1,0 +1,10 @@
+#!/bin/sh
+
+heidi_version=10.1
+heidi_package=HeidiSQL_${heidi_version}_64_Portable.zip
+
+mkdir -p ~/Apps/HeidiSQL
+cd ~/Apps/HeidiSQL
+wget https://www.heidisql.com/downloads/releases/${heidi_package}
+unzip ./${heidi_package}
+rm ./${heidi_package}
