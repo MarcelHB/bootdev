@@ -44,6 +44,14 @@ if ! [ -d $ZSH ]; then
   # ag
   echo "alias ag='ag --path-to-ignore ~/.ignore'" >> ~/.zshrc
 
+  # git
+  echo "alias gits='git status'" >> ~/.zshrc
+  echo "alias gitc='git commit'" >> ~/.zshrc
+  echo "alias gitp='git push'" >> ~/.zshrc
+  echo "alias gitpf='git push --force-with-lease'" >> ~/.zshrc
+  echo "alias gitpr='git pull --rebase'" >> ~/.zshrc
+  echo "alias ide='tmux new-session \"nvim\"'" >> ~/.zshrc
+
   chsh -s $(grep /zsh$ /etc/shells | tail -1)
 fi
 
