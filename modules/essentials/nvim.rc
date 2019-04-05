@@ -115,6 +115,18 @@ function s:setupWrapping()
   set textwidth=72
 endfunction
 
+function! SearchAndReplaceInAllFiles(from, to)
+  let last_buffer = expand('%')
+  execute 'Ag '.a:from
+  execute 'cfdo s/'.a:from.'/'.a:to.'/g | update | close'
+  if last_buffer != ''
+    execute 'e '.last_buffer
+    execute 'cclose'
+  endif
+endfunction
+
+command! -nargs=+ GSR call SearchAndReplaceInAllFiles(<f-args>)
+
 if has("autocmd")
   "  In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
