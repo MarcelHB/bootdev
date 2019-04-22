@@ -1,0 +1,59 @@
+#!/bin/sh
+
+if [ $(id -u) -ne "0" ]; then
+  echo "Must also run this script as a super user afterwards!"
+
+  echo 'new_imap_user () {
+  if [ "$#" -ne 2 ]; then
+    echo "Please give user and password!"
+    exit 1
+  fi
+  NETWORK_ADAPTER=eth0
+
+  echo "~> Getting netmask for $NETWORK_ADAPTER."
+
+  NET_CIDR=`ipcalc $(ip -s -o address show dev $NETWORK_ADAPTER | grep '"'"'inet '"'"' | awk '"'"'{ print $4 }'"'"') | grep Network | awk '"'"'{ print $2 }'"'"'`
+  PASSWORD=$(doveadm pw -p $2)
+  echo "$1:$PASSWORD::::::allow_nets=$NET_CIDR" | sudo tee /etc/dovecot/users > /dev/null
+}' >> ~/.zshrc
+
+  exit 1
+fi
+
+DOVECOT_MAIL_DIR=/var/mail/dir
+DOVECOT_VMAIL_USER=vmail
+
+touch /etc/dovecot/users
+
+id -u $DOVECOT_VMAIL_USER &> /dev/null
+if [ $? = 1 ]; then
+  adduser $DOVECOT_VMAIL_USER --disabled-login --gecos ""
+fi
+
+mkdir -p $DOVECOT_MAIL_DIR
+chown -R $DOVECOT_VMAIL_USER $DOVECOT_MAIL_DIR
+chgrp -R $DOVECOT_VMAIL_USER $DOVECOT_MAIL_DIR
+
+DOVECOT_CONF=/etc/dovecot/conf.d
+
+sed -i 's/^auth_mechanisms.*$/auth_mechanisms = cram-md5/' $DOVECOT_CONF/10-auth.conf
+sed -i 's/^!include auth-.*$//' $DOVECOT_CONF/10-auth.conf
+echo "!include auth-passwdfile.conf.ext" >> $DOVECOT_CONF/10-auth.conf
+sed -i 's#^mail_location =.*$#mail_location = maildir:'$DOVECOT_MAIL_DIR'/%u#' $DOVECOT_CONF/10-mail.conf
+
+echo "
+service lmtp {
+  user = $DOVECOT_VMAIL_USER
+
+  inet_listener lmtp {
+    address = 127.0.0.1
+    port = 25
+  }
+}
+" >> $DOVECOT_CONF/20-lmtp.conf
+
+sed -i 's/args = scheme=CRYPT/args = scheme=cram-md5/' $DOVECOT_CONF/auth-passwdfile.conf.ext
+sed -i "s/#default_fields.*$/default_fields = uid=$DOVECOT_VMAIL_USER gid=$DOVECOT_VMAIL_USER/" $DOVECOT_CONF/auth-passwdfile.conf.ext
+
+service dovecot restart
+
