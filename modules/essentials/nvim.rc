@@ -38,7 +38,7 @@ endfor
 call vundle#end()
 
 set background=light
-colorscheme default
+colorscheme desert
 
 syntax enable
 set encoding=utf-8
