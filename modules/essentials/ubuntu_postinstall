@@ -22,7 +22,16 @@ cp modules/essentials/gitignore ~/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
 # zsh
+ZSH_SCRIPTS=~/.zsh-scripts
 mkdir -p ~/.oh-my-zsh-plugins
+mkdir -p $ZSH_SCRIPTS
+
+ZSH_SCRIPT_LOADING=$(cat <<SH
+for script in $ZSH_SCRIPTS/*.zsh; do
+  source \$script
+done
+SH
+)
 
 ZSH=~/.oh-my-zsh
 if ! [ -d $ZSH ]; then
@@ -41,16 +50,7 @@ if ! [ -d $ZSH ]; then
 
   sed -i 's/^plugins.*$/plugins=(`ls ~\/.oh-my-zsh-plugins`)/' ~/.zshrc
 
-  # ag
-  echo "alias ag='ag --path-to-ignore ~/.ignore'" >> ~/.zshrc
-
-  # git
-  echo "alias gits='git status'" >> ~/.zshrc
-  echo "alias gitc='git commit'" >> ~/.zshrc
-  echo "alias gitp='git push'" >> ~/.zshrc
-  echo "alias gitpf='git push --force-with-lease'" >> ~/.zshrc
-  echo "alias gitpr='git pull --rebase'" >> ~/.zshrc
-  echo "alias ide='tmux new-session \"nvim\"'" >> ~/.zshrc
+  echo "$ZSH_SCRIPT_LOADING" >> ~/.zshrc
 
   chsh -s $(grep /zsh$ /etc/shells | tail -1)
 fi
@@ -60,6 +60,9 @@ cp modules/essentials/ctags ~/.ctags
 
 # ag
 cp modules/essentials/ignore ~/.ignore
+
+# ag / git
+cp modules/essentials/essentials.zsh $ZSH_SCRIPTS/essentials.zsh
 
 # ssh
 mkdir -p ~/.ssh

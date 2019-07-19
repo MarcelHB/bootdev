@@ -3,4 +3,4 @@
 ln -s "${PWD}/vim_plugins" ~/.config/nvim/vundle_plugins/java_plugins.vim
 nvim +PluginInstall +qall
 
-echo "alias mvn-version='mvn org.apache.maven.plugins:maven-help-plugin:3.1.1:evaluate -Dexpression=project.version | grep -v \"^\[\"'" >> ~/.zshrc
+cp modules/java/java.zsh ~/.zsh-scripts/java.zsh
