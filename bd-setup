@@ -1,23 +1,20 @@
 #!/bin/sh
 
-DISTRIBUTION=ubuntu
+. ./dist.conf
 
-if [ -z $1 ]
-then
+if [ -z $1 ]; then
   echo "Please provide the module name!"
   exit 1
 fi
 
-if [ -f modules/$1/${DISTRIBUTION}_postinstall ]
-then
+if [ -f modules/$1/${DISTRIBUTION}_postinstall ]; then
   sh modules/$1/${DISTRIBUTION}_postinstall
 fi
 
-if [ -f modules/$1/zsh_plugins ] && [ -d ~/.oh-my-zsh-plugins ]
-then
+if [ -f modules/$1/zsh_plugins ] && [ -d ~/.oh-my-zsh-plugins ]; then
   plugins=`cat modules/$1/zsh_plugins | tr '\n' ' '`
-  for plugin in $plugins
-  do
+
+  for plugin in $plugins; do
     touch ~/.oh-my-zsh-plugins/$plugin
   done
 fi

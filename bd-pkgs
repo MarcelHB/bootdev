@@ -1,15 +1,13 @@
 #!/bin/sh
 
-DISTRIBUTION=ubuntu
+. ./dist.conf
 
-if [ -z $1 ]
-then
+if [ -z $1 ]; then
   echo "Please provide the module name!"
   exit 1
 fi
 
-if [ -f modules/$1/${DISTRIBUTION}_packages ]
-then
+if [ -f modules/$1/${DISTRIBUTION}_packages ]; then
   packages=`cat modules/$1/${DISTRIBUTION}_packages | tr '\n' ' '`
   apt-get -y install $packages
 fi
