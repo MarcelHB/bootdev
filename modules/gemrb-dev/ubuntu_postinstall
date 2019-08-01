@@ -1,0 +1,10 @@
+#!/bin/sh
+
+GEMRB_DIR=~/Sources/gemrb
+BUILD_DIR=$GEMRB_DIR/build
+
+mkdir -p $GEMRB_DIR
+git clone https://github.com/gemrb/gemrb.git $GEMRB_DIR
+
+mkdir $BUILD_DIR
+cmake -B$BUILD_DIR -H$GEMRB_DIR
