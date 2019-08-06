@@ -1,4 +1,5 @@
 jq
+libxml2-utils
 mawk
 parallel
-libxml2-utils
+ripgrep
