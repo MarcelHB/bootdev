@@ -11,4 +11,5 @@ rng-tools
 screen
 silversearcher-ag
 tmux
+xclip
 zsh
