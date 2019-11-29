@@ -55,6 +55,9 @@ if ! [ -d $ZSH ]; then
   chsh -s $(grep /zsh$ /etc/shells | tail -1)
 fi
 
+# zsh syntax
+git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH/plugins/fast-syntax-highlighting
+
 # ctags
 cp modules/essentials/ctags ~/.ctags
 
