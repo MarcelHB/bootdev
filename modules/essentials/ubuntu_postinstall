@@ -10,15 +10,25 @@ if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
   git clone https://github.com/VundleVim/Vundle.vim ~/.config/nvim/bundle/Vundle.vim
 fi
 
-cp modules/essentials/nvim.rc ~/.config/nvim/init.vim
+if ! [ -f ~/.config/nvim/init.vim ]; then
+  cp modules/essentials/nvim.rc ~/.config/nvim/init.vim
+fi
 nvim +PluginInstall +qall
 
 # tmux
-cp modules/essentials/tmux.conf ~/.tmux.conf
+if ! [ -f ~/.tmux.conf ]; then
+  cp modules/essentials/tmux.conf ~/.tmux.conf
+fi
 
 # git
-cp modules/essentials/gitconfig ~/.gitconfig
-cp modules/essentials/gitignore ~/.gitignore
+if ! [ -f ~/.gitconfig ]; then
+  cp modules/essentials/gitconfig ~/.gitconfig
+fi
+
+if ! [ -f ~/.gitignore ]; then
+  cp modules/essentials/gitignore ~/.gitignore
+fi
+
 git config --global core.excludesfile ~/.gitignore
 
 # zsh
@@ -59,16 +69,24 @@ fi
 git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH/plugins/fast-syntax-highlighting
 
 # ctags
-cp modules/essentials/ctags ~/.ctags
+if ! [ -f ~/.ctags ]; then
+  cp modules/essentials/ctags ~/.ctags
+fi
 
 # ag
-cp modules/essentials/ignore ~/.ignore
+if ! [ -f ~/.ignore ]; then
+  cp modules/essentials/ignore ~/.ignore
+fi
 
 # ag / git
-cp modules/essentials/essentials.zsh $ZSH_SCRIPTS/essentials.zsh
+if ! [ -f $ZSH_SCRIPTS/essentials.zsh ]; then
+  cp modules/essentials/essentials.zsh $ZSH_SCRIPTS/essentials.zsh
+fi
 
 # ssh
 mkdir -p ~/.ssh
-cp modules/essentials/ssh-config ~/.ssh/config
+if ! [ -f ~/.ssh/config ]; then
+  cp modules/essentials/ssh-config ~/.ssh/config
+fi
 chmod 0700 ~/.ssh
 
