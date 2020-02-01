@@ -62,7 +62,7 @@ if ! [ -d $ZSH ]; then
 
   echo "$ZSH_SCRIPT_LOADING" >> ~/.zshrc
 
-  chsh -s $(grep /zsh$ /etc/shells | tail -1)
+  chsh -s "$(grep /zsh$ /etc/shells | tail -1)"
 fi
 
 # zsh syntax

@@ -2,7 +2,7 @@
 
 . ./dist.conf
 
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
   echo "Please provide a $DISTRIBUTION package name!"
   exit 1
 fi
