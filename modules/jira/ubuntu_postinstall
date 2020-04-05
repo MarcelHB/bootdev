@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if ! [ -f ~/.jira-url ]; then
+  echo "https://subdomain.atlassian.com" > ~/.jira-url
+  echo "PREF" > ~/.jira-prefix
+fi
+
+cp modules/jira/jira.zsh ~/.zsh-scripts/jira.zsh
