@@ -1,0 +1,5 @@
+build-essential
+cmake
+nasm
+libtool
+libpng-dev

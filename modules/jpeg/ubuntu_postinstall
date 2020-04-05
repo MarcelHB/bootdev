@@ -1,0 +1,18 @@
+#!/bin/sh
+
+MOZJPEG_DIR=~/Sources/libmozjpeg
+MOZJPEG_BUILD_DIR=~/Sources/libmozjpeg/build
+JPEG_ARCHIVE_DIR=~/Sources/jpeg-archive
+
+# libmozjpeg is currently unavailable as an Ubuntu package
+git clone https://github.com/mozilla/mozjpeg.git $MOZJPEG_DIR
+mkdir -p $MOZJPEG_BUILD_DIR
+cd $MOZJPEG_BUILD_DIR
+cmake ..
+make -j $(echo "$(nproc) * 2" | bc) 
+sudo make install
+
+git clone https://github.com/danielgtaylor/jpeg-archive $JPEG_ARCHIVE_DIR
+cd $JPEG_ARCHIVE_DIR
+make
+sudo make install
