@@ -1,6 +1,6 @@
 #!/bin/sh
 
-heidi_version=10.3
+heidi_version=11.0
 heidi_package=HeidiSQL_${heidi_version}_64_Portable.zip
 
 mkdir -p ~/Apps/HeidiSQL
