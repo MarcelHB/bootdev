@@ -1,0 +1,2 @@
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
