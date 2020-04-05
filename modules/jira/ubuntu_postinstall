@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if ! [ -f ~/.jira-url ]; then
-  echo "https://subdomain.atlassian.com" > ~/.jira-url
+  echo "https://subdomain.atlassian.net" > ~/.jira-url
   echo "PREF" > ~/.jira-prefix
 fi
 
