@@ -9,5 +9,5 @@ fi
 
 if [ -f "modules/$1/${DISTRIBUTION}_packages" ]; then
   packages=$(cat "modules/$1/${DISTRIBUTION}_packages" | tr '\n' ' ')
-  apt-get -y install "$packages"
+  apt-get -y install $packages
 fi
