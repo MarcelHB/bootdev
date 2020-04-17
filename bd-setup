@@ -18,3 +18,10 @@ if [ -f "modules/$1/zsh_plugins" ] && [ -d ~/.oh-my-zsh-plugins ]; then
     touch "$HOME/.oh-my-zsh-plugins/$plugin"
   done
 fi
+
+if [ -f "modules/$1/vim_plugins" ] && [ -d ~/.config/nvim/vundle_plugins ]; then
+  if ! [ -f "$HOME/.config/nvim/vundle_plugins/$1.vim" ]; then
+    cp "modules/$1/vim_plugins" "$HOME/.config/nvim/vundle_plugins/$1.vim"
+    nvim +PluginInstall +qall
+  fi
+fi
