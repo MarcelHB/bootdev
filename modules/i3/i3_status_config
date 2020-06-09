@@ -1,0 +1,14 @@
+general {
+  output_format = "i3bar"
+}
+
+battery all {
+  format = "🔋 %status"
+}
+
+time {
+  format = "%H:%M"
+}
+
+order += "battery all"
+order += "time"
