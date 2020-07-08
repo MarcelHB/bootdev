@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# unmanaged executables
+mkdir -p ~/bin
+
 # nvim
 mkdir -p ~/.config/nvim/bundle
 mkdir -p ~/.config/nvim/vundle_plugins
