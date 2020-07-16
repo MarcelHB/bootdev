@@ -3,3 +3,6 @@
 alias mvn-version='mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version | grep -v \"^\[\"'
 # creates an HTML report of dep. vulnerabilities in target/
 alias mvn-vuln='mvn org.owasp:dependency-check-maven:5.3.2:check'
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"

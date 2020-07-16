@@ -1,6 +1,28 @@
 #!/bin/sh
+set -e
 
-ln -s "${PWD}/vim_plugins" ~/.config/nvim/vundle_plugins/java_plugins.vim
-nvim +PluginInstall +qall
+SDKMAN_API=https://api.sdkman.io/2
+SDKMAN_VERSION=$(curl -s ${SDKMAN_API}/broker/download/sdkman/version/stable)
+SDKMAN_DIR="$HOME/.sdkman"
+
+subdirs="bin src tmp/setup ext etc var archives candidates"
+
+for subdir in $subdirs; do
+  mkdir -p "$SDKMAN_DIR/$subdir"
+done
+
+curl -s --location "$SDKMAN_API/broker/download/sdkman/install/$SDKMAN_VERSION/$(uname)" > "$SDKMAN_DIR/tmp/sdkman.zip"
+unzip -qo "$SDKMAN_DIR/tmp/sdkman.zip" -d "$SDKMAN_DIR/tmp/setup"
+
+mv "$SDKMAN_DIR/tmp/setup/sdkman-init.sh" "$SDKMAN_DIR/bin/"
+mv "$SDKMAN_DIR/tmp/setup/sdkman-"* "$SDKMAN_DIR/src/"
+echo "$SDKMAN_VERSION" > "${SDKMAN_DIR}/var/version"
+
+rm "$SDKMAN_DIR/tmp/sdkman.zip"
+rm -rf "$SDKMAN_DIR/tmp/setup"
+
+SDKMAN_CANDIDATES_CSV=$(curl -s "${SDKMAN_API}/candidates/all")
+echo "$SDKMAN_CANDIDATES_CSV" > "${SDKMAN_DIR}/var/candidates"
 
 cp modules/java/java.zsh ~/.zsh-scripts/java.zsh
+cp modules/java/sdkman_config "$SDKMAN_DIR/etc/config"
