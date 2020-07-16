@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 GEMRB_DIR=~/Sources/gemrb
 BUILD_DIR=$GEMRB_DIR/build

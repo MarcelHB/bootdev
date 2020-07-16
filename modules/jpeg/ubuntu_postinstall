@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 MOZJPEG_DIR=~/Sources/libmozjpeg
 MOZJPEG_BUILD_DIR=~/Sources/libmozjpeg/build

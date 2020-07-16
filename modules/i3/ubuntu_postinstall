@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 cp modules/i3/i3_config ~/.config/i3/config
 cp modules/i3/i3_status_config ~/.config/i3status/config

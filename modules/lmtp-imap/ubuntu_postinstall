@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ "$(id -u)" -ne "0" ]; then
   echo "Must also run this script as a super user afterwards!"
