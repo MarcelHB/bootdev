@@ -55,6 +55,9 @@ set tabstop=2 shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
 set autoindent
+set list
+set listchars=tab:▸▸,trail:•
+hi NonText ctermfg=250 guifg=ivory3
 
 set hlsearch
 set incsearch
