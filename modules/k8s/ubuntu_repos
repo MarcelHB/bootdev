@@ -1,0 +1,2 @@
+https://packages.cloud.google.com/apt/doc/apt-key.gpg;deb [arch=amd64] https://packages.cloud.google.com/apt;main;cloud-sdk
+https://baltocdn.com/helm/signing.asc;deb https://baltocdn.com/helm/stable/debian/;main;all
