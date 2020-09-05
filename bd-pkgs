@@ -14,7 +14,11 @@ if [ -f "modules/$1/${DISTRIBUTION}_repos" ]; then
     echo "* Adding an external repo: ${ELEMS[1]}"
 
     curl -fsSL "${ELEMS[0]}" | apt-key add -
-    add-apt-repository "${ELEMS[1]} $(lsb_release -cs) ${ELEMS[2]}"
+    if [ "${#ELEMS[@]}" -eq "3" ]; then
+      add-apt-repository "${ELEMS[1]} $(lsb_release -cs) ${ELEMS[2]}"
+    else
+      add-apt-repository "${ELEMS[1]} ${ELEMS[3]} ${ELEMS[2]}"
+    fi
   done < <(cat "modules/$1/${DISTRIBUTION}_repos")
 
   apt-get update
