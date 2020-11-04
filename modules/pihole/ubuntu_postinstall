@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ "$(id -u)" -ne "0" ]; then
+  echo "Run me as sudo."
+
+  exit 1
+fi
+
+# UFW
+ufw default deny
+ufw allow ssh
+ufw allow dns
+ufw allow http
+ufw enable
+
+# SSH
+systemctl enable ssh
+systemctl start ssh
+
+# sudo
+echo "pi ALL=(ALL) PASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd
