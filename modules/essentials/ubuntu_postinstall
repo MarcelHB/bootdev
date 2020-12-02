@@ -15,7 +15,7 @@ if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
 fi
 
 if ! [ -f ~/.config/nvim/init.vim ]; then
-  cp modules/essentials/nvim.rc ~/.config/nvim/init.vim
+  cp modules/essentials/init.vim ~/.config/nvim/init.vim
 fi
 nvim +PluginInstall +qall
 
