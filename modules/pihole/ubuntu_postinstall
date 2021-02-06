@@ -34,5 +34,5 @@ chown cloudflared:cloudflared /etc/default/cloudflared
 chown cloudflared:cloudflared ~/bin/cloudflared
 
 cp modules/pihole/cloudflared.service /etc/systemd/system/cloudflared.service
-sudo systemctl enable cloudflared
-sudo systemctl start cloudflared
+systemctl enable cloudflared
+systemctl start cloudflared
