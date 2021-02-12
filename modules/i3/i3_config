@@ -153,6 +153,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         position top
+        font pango:Ubuntu 10
 }
 
 exec --no-startup-id nm-applet
@@ -164,5 +165,7 @@ client.focused_inactive #000000 #ffffff #000000 #0000ff #000000
 client.unfocused        #000000 #ffffff #888888 #0000ff #000000
 client.urgent           #000000 #ffffff #000000 #0000ff #000000
 client.placeholder      #000000 #ffffff #000000 #0000ff #000000
+
+font pango:Ubuntu 10
 
 bindsym $mod+p exec dm-tool lock
