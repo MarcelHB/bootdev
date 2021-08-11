@@ -1,0 +1,44 @@
+# OpenAL soft config file.
+#
+# full file: https://github.com/kcat/openal-soft/blob/master/alsoftrc.sample
+
+[general]
+
+# 'auto' with 'headphones' sounds bad with remotely balanced headphones
+stereo-mode = speakers
+
+[decoder]
+
+hq-mode = false
+distance-comp = true
+nfc = true
+nfc-ref-delay =
+quad =
+surround51 =
+surround61 =
+surround71 =
+
+[reverb]
+
+[pulse]
+
+[alsa]
+
+[oss]
+
+[solaris]
+
+[qsa]
+
+[jack]
+
+[wasapi]
+
+[dsound]
+
+[winmm]
+
+[port]
+
+[wave]
+

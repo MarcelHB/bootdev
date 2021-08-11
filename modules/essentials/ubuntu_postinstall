@@ -94,3 +94,7 @@ if ! [ -f ~/.ssh/config ]; then
 fi
 chmod 0700 ~/.ssh
 
+# OpenAL
+if ! [ -f ~/.alsoftrc ]; then
+  cp modules/essentials/alsoftrc ~/.alsoftrc
+fi
