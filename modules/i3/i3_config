@@ -169,3 +169,4 @@ client.placeholder      #000000 #ffffff #000000 #0000ff #000000
 font pango:Ubuntu 10
 
 bindsym $mod+p exec dm-tool lock
+exec --no-startup-id dunst
