@@ -1,7 +1,4 @@
 #!/bin/sh
 set -e
 
-DC_VERSION=1.26.2
-
-curl -L "https://github.com/docker/compose/releases/download/$DC_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o ~/bin/docker-compose
-chmod +x ~/bin/docker-compose
+podman completion zsh -f "$HOME/.zsh-scripts/podman.zsh"
