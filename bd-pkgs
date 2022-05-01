@@ -29,6 +29,10 @@ if [ -f "modules/$1/${DISTRIBUTION}_repos" ]; then
   apt-get update
 fi
 
+if [ -f "modules/$1/${DISTRIBUTION}_preinstall" ]; then
+  sh "modules/$1/${DISTRIBUTION}_preinstall"
+fi
+
 if [ -f "modules/$1/${DISTRIBUTION}_packages" ]; then
   packages=$(cat "modules/$1/${DISTRIBUTION}_packages" | tr '\n' ' ')
   apt-get -y install $packages
