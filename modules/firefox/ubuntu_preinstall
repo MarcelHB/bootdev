@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+apt-get -y --allow-downgrades purge firefox || true
+snap remove firefox
+
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' > /etc/apt/preferences.d/mozilla-firefox
+
+echo "Unattended-Upgrade::Allowed-Origins:: \"LP-PPA-mozillateam:$(lsb_release -cs)\";" > /etc/apt/apt.conf.d/51unattended-upgrades-firefox
