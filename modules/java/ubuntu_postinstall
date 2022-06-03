@@ -24,5 +24,6 @@ rm -rf "$SDKMAN_DIR/tmp/setup"
 SDKMAN_CANDIDATES_CSV=$(curl -s "${SDKMAN_API}/candidates/all")
 echo "$SDKMAN_CANDIDATES_CSV" > "${SDKMAN_DIR}/var/candidates"
 
-cp modules/java/java.zsh ~/.zsh-scripts/java.zsh
+cp modules/java/java.zsh $HOME/.zsh-scripts/java.zsh
+cp modules/java/mvn.zsh $HOME/.zsh-scripts/mvn.zsh
 cp modules/java/sdkman_config "$SDKMAN_DIR/etc/config"
