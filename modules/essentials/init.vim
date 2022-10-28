@@ -30,12 +30,16 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'vim-scripts/ZoomWin'
+Plugin 'tpope/vim-repeat'
+Plugin 'ggandor/leap.nvim'
 
 for f in split(glob('~/.config/nvim/vundle_plugins/*.vim'), '\n')
     exe 'source' f
 endfor
 
 call vundle#end()
+
+lua require('leap').add_default_mappings()
 
 set background=light
 colorscheme desert
