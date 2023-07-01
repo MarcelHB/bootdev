@@ -158,9 +158,6 @@ if has("autocmd")
   au filetype help nnoremap <buffer>q :q<CR>
   au filetype help set nonumber
 
-  " Remove trailing whitespace
-  autocmd FileType ruby,javascipt,coffee,eruby,c,cpp,java,php,vim autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
-
   " Remember last location in file, but not for commit messages.
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
