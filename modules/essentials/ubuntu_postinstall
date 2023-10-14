@@ -70,7 +70,7 @@ if ! [ -d $ZSH ]; then
 fi
 
 # zsh syntax
-git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH/plugins/fast-syntax-highlighting
+git clone https://github.com/zdharma/fast-syntax-highlighting.git $ZSH/custom/plugins/F-Sy-H
 
 # ctags
 if ! [ -f ~/.ctags ]; then
