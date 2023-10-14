@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+mkdir -p ~/.config/sway
+mkdir -p ~/.config/i3status
+
+cp modules/i3/i3_config ~/.config/sway/config
+cp modules/i3/i3_status_config ~/.config/i3status/config
+
+cat modules/sway/config >> ~/.config/sway/config

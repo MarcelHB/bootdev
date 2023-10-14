@@ -1,0 +1,5 @@
+include /etc/sway/config.d/*
+
+input * {
+  xkb_layout "de"
+}

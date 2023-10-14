@@ -1,12 +1,19 @@
 #!/bin/sh
 set -e
 
-mkdir -p $HOME/.config/alacritty
-cp modules/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+mkdir -p "$HOME/.config/alacritty"
+cp modules/alacritty/alacritty.yml "$HOME/.config/alacritty/alacritty.yml"
 
 I3_CONFIG="$HOME/.config/i3/config"
 
-if [ -f $I3_CONFIG ]; then
-  sed -i 's/^bindsym $mod+Return/#bindsym $mod+Return/' $I3_CONFIG
-  echo "\nbindsym \$mod+Return exec /usr/bin/alacritty" >> $I3_CONFIG
+if [ -f "$I3_CONFIG" ]; then
+  sed -i 's/^bindsym $mod+Return/#bindsym $mod+Return/' "$I3_CONFIG"
+  echo "\nbindsym \$mod+Return exec /usr/bin/alacritty" >> "$I3_CONFIG"
+fi
+
+SWAY_CONFIG="$HOME/.config/sway/config"
+
+if [ -f "$SWAY_CONFIG" ]; then
+  sed -i 's/^bindsym $mod+Return/#bindsym $mod+Return/' "$SWAY_CONFIG"
+  echo "\nbindsym \$mod+Return exec /usr/bin/alacritty" >> "$SWAY_CONFIG"
 fi
