@@ -2,6 +2,7 @@ bsdmainutils
 colordiff
 curl
 exfatprogs
+fzf
 gnupg2
 htop
 neovim
