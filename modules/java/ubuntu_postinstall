@@ -14,8 +14,8 @@ done
 curl -s --location "$SDKMAN_API/broker/download/sdkman/install/$SDKMAN_VERSION/$(uname)" > "$SDKMAN_DIR/tmp/sdkman.zip"
 unzip -qo "$SDKMAN_DIR/tmp/sdkman.zip" -d "$SDKMAN_DIR/tmp/setup"
 
-mv "$SDKMAN_DIR/tmp/setup/sdkman-init.sh" "$SDKMAN_DIR/bin/"
-mv "$SDKMAN_DIR/tmp/setup/sdkman-"* "$SDKMAN_DIR/src/"
+mv "$SDKMAN_DIR/tmp/setup/sdkman-${SDKMAN_VERSION}/bin/sdkman-init.sh" "$SDKMAN_DIR/bin/"
+mv "$SDKMAN_DIR/tmp/setup/sdkman-${SDKMAN_VERSION}/src/"* "$SDKMAN_DIR/src/"
 echo "$SDKMAN_VERSION" > "${SDKMAN_DIR}/var/version"
 
 rm "$SDKMAN_DIR/tmp/sdkman.zip"
