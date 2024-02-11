@@ -80,8 +80,8 @@ map <leader>f :CtrlP<cr>
 map <leader>F :CtrlP %%<cr>
 map <leader>N :NERDTreeToggle<cr>
 
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_use_caching=0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g "" --ignore-dir=.git --ignore-dir=build'
+let g:ctrlp_use_caching=1
 
 let g:syntastic_cpp_compiler_options = ' -std=c++17'
 
