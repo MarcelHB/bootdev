@@ -2,7 +2,7 @@
 set -e
 
 mkdir -p "$HOME/.config/alacritty"
-cp modules/alacritty/alacritty.yml "$HOME/.config/alacritty/alacritty.yml"
+cp modules/alacritty/alacritty.toml "$HOME/.config/alacritty/alacritty.toml"
 
 I3_CONFIG="$HOME/.config/i3/config"
 

@@ -1,0 +1,49 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#555555"
+blue = "#5555ff"
+cyan = "#55d6ff"
+green = "#55ff00"
+magenta = "#ff55ff"
+red = "#ff5555"
+white = "#000000"
+yellow = "#e0ab0a"
+
+[colors.normal]
+black = "#000000"
+blue = "#3398f0"
+cyan = "#00aaaa"
+green = "#00aa00"
+magenta = "#aa00aa"
+red = "#aa0000"
+white = "#aaaaaa"
+yellow = "#aa5500"
+
+[colors.primary]
+background = "#ffffff"
+foreground = "#000000"
+
+[font]
+size = 6.0
+
+[font.bold]
+family = "Ubuntu Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "Ubuntu Mono"
+style = "Italic"
+
+[font.normal]
+family = "Ubuntu Mono"
+style = "Regular"
+
+[scrolling]
+history = 5000
+multiplier = 3
