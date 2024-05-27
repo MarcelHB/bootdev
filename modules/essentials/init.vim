@@ -42,7 +42,7 @@ call vundle#end()
 lua require('leap').add_default_mappings()
 
 set background=light
-colorscheme desert
+colorscheme delek
 
 syntax enable
 set encoding=utf-8
