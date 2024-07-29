@@ -17,21 +17,15 @@ ufw enable
 systemctl enable ssh
 systemctl start ssh
 
-# sudo
-echo "pi ALL=(ALL) PASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd
-
 # DoH/cloudflared
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf ./cloudflared-stable-linux-arm.tgz
-rm ./cloudflared-stable-linux.arm.tgz
-mv ./cloudflared ~/bin/cloudflared
+curl -o /usr/local/bin/cloudflared -L https://github.com/cloudflare/cloudflared/releases/2024.6.1/download/cloudflared-linux-arm64
 
 cp modules/pihole/cloudflared.opts /etc/default/cloudflared
 
-chmod +x ~/bin/cloudflared
+chmod +x /usr/local/bin/cloudflared
 useradd -s /usr/sbin/nologin -r -M cloudflared
 chown cloudflared:cloudflared /etc/default/cloudflared
-chown cloudflared:cloudflared ~/bin/cloudflared
+chown cloudflared:cloudflared /usr/local/bin/cloudflared
 
 cp modules/pihole/cloudflared.service /etc/systemd/system/cloudflared.service
 systemctl enable cloudflared
