@@ -30,3 +30,6 @@ chown cloudflared:cloudflared /usr/local/bin/cloudflared
 cp modules/pihole/cloudflared.service /etc/systemd/system/cloudflared.service
 systemctl enable cloudflared
 systemctl start cloudflared
+
+# dark power LED
+(crontab -l 2>/dev/null; echo "@reboot bash -c \"echo 0 > /sys/devices/platform/leds/leds/PWR/brightness\"") | crontab -
