@@ -1,6 +1,7 @@
 build-essential
 cmake
 libopenal-dev
+libpng-dev
 libpython3-dev
 libsdl2-dev
 libsdl2-mixer-dev
