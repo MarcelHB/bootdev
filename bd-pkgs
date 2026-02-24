@@ -26,7 +26,7 @@ if [ -f "modules/$1/${DISTRIBUTION}_repos" ]; then
     fi
   done < <(cat "modules/$1/${DISTRIBUTION}_repos")
 
-  apt-get update
+  apt update
 fi
 
 if [ -f "modules/$1/${DISTRIBUTION}_preinstall" ]; then
@@ -35,7 +35,7 @@ fi
 
 if [ -f "modules/$1/${DISTRIBUTION}_packages" ]; then
   packages=$(cat "modules/$1/${DISTRIBUTION}_packages" | tr '\n' ' ')
-  apt-get -y install $packages
+  apt -y install $packages
 fi
 
 if [ -x "$(command -v snap)" ] && [ -f "modules/$1/snaps" ]; then
