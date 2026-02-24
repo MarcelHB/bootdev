@@ -8,6 +8,15 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+if [ -f "modules/$1/${DISTRIBUTION}_alsoinstall" ]; then
+  echo "========================================="
+  echo " do not forget to install this as well:"
+  for also in $(cat "modules/$1/${DISTRIBUTION}_alsoinstall"); do
+    echo "* $also"
+  done
+  echo "========================================="
+fi
+
 if [ -f "modules/$1/${DISTRIBUTION}_postinstall" ]; then
   sh "modules/$1/${DISTRIBUTION}_postinstall"
 fi
