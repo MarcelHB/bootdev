@@ -1,35 +1,53 @@
 #!/bin/sh
 
 if [ "$(id -u)" -ne "0" ]; then
-  echo "Run me as sudo."
+  # PiHole
+  curl -sSL https://install.pi-hole.net | bash
+  echo "========================================="
+  echo " sudo this script again"
+  echo "========================================="
 
-  exit 1
+  exit 0
+else
+  if ! command -v pihole-FTL >/dev/null 2>&1; then
+    echo "Use this script as sudo after installing PiHole non-sudo"
+    exit 1
+  fi
 fi
 
+
 # UFW
-ufw default deny
-ufw allow ssh
 ufw allow dns
 ufw allow http
-ufw enable
 
-# SSH
-systemctl enable ssh
-systemctl start ssh
+DNSCRYPT_SOCKET=$(cat <<CFG
+[Socket]
+ListenStream=
+ListenDatagram=
+ListenStream=127.0.0.1:5054
+ListenDatagram=127.0.0.1:5054
+CFG
+)
 
-# DoH/cloudflared
-curl -o /usr/local/bin/cloudflared -L https://github.com/cloudflare/cloudflared/releases/2024.6.1/download/cloudflared-linux-arm64
+echo "$DNSCRYPT_SOCKET" >> /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
 
-cp modules/pihole/cloudflared.opts /etc/default/cloudflared
+DNSYCRPT_CONFIG=$( <<CFG
+listen_addresses = []
+server_names = ['cloudflare']
 
-chmod +x /usr/local/bin/cloudflared
-useradd -s /usr/sbin/nologin -r -M cloudflared
-chown cloudflared:cloudflared /etc/default/cloudflared
-chown cloudflared:cloudflared /usr/local/bin/cloudflared
+[static.'cloudflare']
+stamp = 'sdns://AgcAAAAAAAAADjEwNC4xNi4xMzIuMjI5ABJkbnMuY2xvdWRmbGFyZS5jb20KL2Rucy1xdWVyeQ'
+CFG
+)
 
-cp modules/pihole/cloudflared.service /etc/systemd/system/cloudflared.service
-systemctl enable cloudflared
-systemctl start cloudflared
+echo "$DNSCRYPT_SOCKET" >> /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+
+systemctl daemon-reload
+systemctl restart dnscrypt-proxy.socket
+systemctl restart dnscrypt-proxy.service
+systemctl restart pihole-FTL.service
+
+pihole-FTL --config dns.upstreams '["127.0.0.1#5054"]'
 
 # dark power LED
 (crontab -l 2>/dev/null; echo "@reboot bash -c \"echo 0 > /sys/devices/platform/leds/leds/PWR/brightness\"") | crontab -
