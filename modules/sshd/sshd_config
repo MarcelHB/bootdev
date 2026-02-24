@@ -1,0 +1,32 @@
+Protocol 2
+ListenAddress 0.0.0.0
+Port 22
+
+HostbasedAuthentication no
+MaxAuthTries 3
+PermitRootLogin no
+PasswordAuthentication no
+PermitEmptyPasswords no
+PubkeyAuthentication yes
+UsePAM no
+AuthorizedKeysFile  /etc/ssh/authorized_keys/%u
+
+KexAlgorithms +diffie-hellman-group-exchange-sha256
+Ciphers +aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes128-ctr
+MACs +hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+HostKeyAlgorithms +curve25519-sha256@libssh.org,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521
+
+ClientAliveInterval 300
+ClientAliveCountMax 2
+MaxStartups 10:30:60
+MaxSessions 10
+X11Forwarding no
+AllowTcpForwarding yes
+AllowAgentForwarding yes
+
+LogLevel INFO
+SyslogFacility AUTH
+
+StrictModes yes
+IgnoreRhosts yes
+KeepAlive yes
