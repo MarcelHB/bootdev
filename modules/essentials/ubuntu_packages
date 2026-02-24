@@ -1,4 +1,5 @@
 bsdmainutils
+chrony
 colordiff
 curl
 exfatprogs
@@ -8,7 +9,6 @@ htop
 lsof
 neovim
 net-tools
-ntp
 pwgen
 rng-tools
 screen
