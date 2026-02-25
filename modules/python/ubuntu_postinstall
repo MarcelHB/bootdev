@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-
-git clone -b v2.4.1 https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
-
-cp modules/python/pyenv.zsh "$HOME/.zsh-scripts/pyenv.zsh"

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-wget -P $HOME https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
+wget -P $HOME https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/refs/tags/v0.17.4/.gdbinit
+
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc

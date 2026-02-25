@@ -17,6 +17,19 @@ if [ -f "modules/$1/${DISTRIBUTION}_alsoinstall" ]; then
   echo "========================================="
 fi
 
+if [ -f "modules/$1/mise_packages" ]; then
+  pkgs=$(cat "modules/$1/mise_packages" | tr '\n' ' ')
+
+  if ! command -v mise > /dev/null 2>&1; then
+    echo "Mise packages, but mise not found! Install misc-dev."
+    exit 1
+  fi
+
+  for pkg in $pkgs; do
+    mise install "$pkg"
+  done
+fi
+
 if [ -f "modules/$1/${DISTRIBUTION}_postinstall" ]; then
   sh "modules/$1/${DISTRIBUTION}_postinstall"
 fi
