@@ -1,11 +1,20 @@
 #!/bin/sh
 set -e
 
-heidi_version=11.0
-heidi_package=HeidiSQL_${heidi_version}_64_Portable.zip
+if [ "$(id -u)" -ne "0" ]; then
+  echo "Please run as sudo."
 
-mkdir -p ~/Apps/HeidiSQL
-cd ~/Apps/HeidiSQL
-wget https://www.heidisql.com/downloads/releases/${heidi_package}
-unzip ./${heidi_package}
-rm ./${heidi_package}
+  exit 1
+fi
+
+sha256="d70a0b67e135e963e8c1847393845823c497694dec86de06349848b5a06baebf"
+tmp_file=$(mktemp)
+curl -L https://github.com/HeidiSQL/HeidiSQL/releases/download/v12.15.1.1/heidisql_12.15.1.1_amd64.deb -o "$tmp_file"
+
+if [ ! echo "$sha256 $tmp_file" | sha256sum -c ]; then
+  echo "SHA256 checksum not matching!"
+  exit 1
+fi
+
+dpkg -i "$tmp_file"
+rm "$tmp_file"

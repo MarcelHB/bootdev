@@ -1,1 +1,4 @@
-wine
+libmariadb-dev
+libpq5
+libsybdb5
+sqlite3
