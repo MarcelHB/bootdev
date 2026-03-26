@@ -1,1 +1,1 @@
-https://mise.jdx.dev/gpg-key.pub;deb [arch=amd64] https://mise.jdx.dev/deb;main;stable
+https://mise.jdx.dev/gpg-key.pub;https://mise.jdx.dev/deb;main;stable
