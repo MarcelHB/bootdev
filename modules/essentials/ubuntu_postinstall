@@ -15,19 +15,10 @@ fi
 mkdir -p ~/bin
 
 # nvim
-mkdir -p ~/.config/nvim/bundle
-mkdir -p ~/.config/nvim/vundle_plugins
-mkdir -p ~/.config/nvim/swaps
-mkdir -p ~/.config/nvim/backups
-
-if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
-  git clone https://github.com/VundleVim/Vundle.vim ~/.config/nvim/bundle/Vundle.vim
+if ! [ -f ~/.config/nvim/init.lua ]; then
+  cp modules/essentials/init.lua ~/.config/nvim/init.lua
 fi
-
-if ! [ -f ~/.config/nvim/init.vim ]; then
-  cp modules/essentials/init.vim ~/.config/nvim/init.vim
-fi
-nvim +PluginInstall +qall
+nvim +qall
 
 # tmux
 if ! [ -f ~/.tmux.conf ]; then

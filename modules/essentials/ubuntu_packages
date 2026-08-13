@@ -6,13 +6,14 @@ exfatprogs
 fzf
 gnupg2
 htop
+jq
 lsof
 neovim
 net-tools
 pwgen
 rng-tools
+ripgrep
 screen
-silversearcher-ag
 testdisk
 tmux
 traceroute
