@@ -138,6 +138,7 @@ vim.api.nvim_create_user_command("Git", "Gitsigns <args>", { nargs = "*" })
 local telescope = require("telescope.builtin")
 vim.keymap.set("n", "<leader>f", telescope.find_files, {})
 vim.keymap.set("n", "<leader>r", telescope.live_grep, {})
+vim.keymap.set("n", "<leader>R", telescope.resume, {})
 
 -- nvim-tree: file tree
 local tree_config = {
