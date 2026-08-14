@@ -14,6 +14,9 @@ vim.opt.tabstop = 2
 vim.opt.background = "light"
 vim.opt.signcolumn = "yes"
 
+vim.opt.mouse = "a"
+vim.opt.clipboard = "unnamed"
+
 vim.g.mapleader = ","
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
